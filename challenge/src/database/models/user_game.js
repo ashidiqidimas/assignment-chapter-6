@@ -11,16 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      user_game.hasMany(models.user_game_history);
+      user_game.hasMany(models.user_game_biodata);
     }
   }
   user_game.init({
-    user_id: DataTypes.INTEGER,
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'user_game',
+    freezeTableName: true
   });
   return user_game;
 };

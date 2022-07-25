@@ -1,7 +1,7 @@
-const {user_game} = require('../database/models');
+const {user_game_biodata} = require('../database/models');
 
 const repoGetAllUsers = async () => {
-  return await user_game.findAll();
+  return await user_game_biodata.findAll();
 };
 
 const repoFindAUser = async (username) => {
@@ -11,32 +11,32 @@ const repoFindAUser = async (username) => {
 };
 
 const repoCreateNewUser = async (username, password) => {
-  await user_game.create({
+  await user_game_biodata.create({
     username: username,
     password: password,
   });
 };
 
 const repoDeleteUser = async (user_id) => {
-  return await user_game.destroy({
+  return await user_game_biodata.destroy({
     where: {user_id: user_id}
   });
 }
 
-const repoUpdatePassword = async (user_id, password) => {
-  return user_game.update({
-    password: password,
+const repoUpdateScore = async (user_id, score) => {
+  return user_game_biodata.update({
+    score: score,
   }, {
     where: {user_id: user_id},
   });
 }
 
-const userRepo = {
+const user_biodataRepo = {
   repoGetAllUsers,
   repoCreateNewUser,
   repoFindAUser,
   repoDeleteUser,
-  repoUpdatePassword
+  repoUpdateScore
 };
 
-module.exports = userRepo;
+module.exports = user_biodataRepo;

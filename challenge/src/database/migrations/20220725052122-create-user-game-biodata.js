@@ -2,10 +2,10 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('user_game_biodata', {
-      id: {
+      user_id: {
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
+        // autoIncrement: true,
+        foreignKey: true,
         type: Sequelize.INTEGER
       },
       age: {

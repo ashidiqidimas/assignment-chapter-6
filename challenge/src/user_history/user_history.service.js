@@ -1,4 +1,4 @@
-const userRepo = require("./user.repo");
+const userRepo = require("./user_history.repo");
 
 const getAllUsers = async () => {
   return await userRepo.repoGetAllUsers();

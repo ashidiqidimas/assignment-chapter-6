@@ -14,11 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   user_game_history.init({
+    user_id: DataTypes.INTEGER,
     time: DataTypes.DATE,
     score: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'user_game_history',
+    freezeTableName: true
   });
   return user_game_history;
 };

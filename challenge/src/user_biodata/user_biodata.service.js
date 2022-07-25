@@ -1,4 +1,4 @@
-const userRepo = require("./user.repo");
+const userRepo = require("./user_biodata.repo");
 
 const getAllUsers = async () => {
   return await userRepo.repoGetAllUsers();
@@ -15,18 +15,18 @@ const createNewUser = async (username, password) => {
 };
 
 const deleteUser = async (user_id) => {
-    return await userRepo.repoDeleteUser(id);
+    return await userRepo.repoDeleteUser(user_id);
 }
 
-const updatePassword = async (user_id, password) => {
-  return await userRepo.repoUpdatePassword(user_id, password);
+const updateScore = async (user_id, score) => {
+  return await userRepo.repoUpdateScore(user_id, score);
 }
 
 const userServices = {
   getAllUsers,
   createNewUser,
   deleteUser,
-  updatePassword
+  updateScore
 }
 
 module.exports = userServices;

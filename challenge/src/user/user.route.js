@@ -1,21 +1,15 @@
-// Handle routing
-
 const express = require("express");
 const userServices = require("./user.service");
 const userRouter = express.Router();
 
-// API to get all users
 userRouter.get('/', (req, res) => {
   const users = userServices.getAllUsers();
 
   res.json(users);
 });
 
-// API to create new user
 userRouter.post("/", async (req, res) => {
-  const  {username, password} = req.body;
-
-  // res.send("ok");
+  const  {username, password} = req.query;
 
   try {
     const newUser = await userServices.createNewUser(username, password);
@@ -25,12 +19,23 @@ userRouter.post("/", async (req, res) => {
   }
 });
 
-userRouter.delete("/:id", async (req, res) => {
-  const { id } = req.params;
+userRouter.delete("/", async (req, res) => {
+  const { user_id } = req.query;
 
   try {
-    await userServices.deleteUser(id);
-    res.send(`Success delete user with id ${id}`);
+    await userServices.deleteUser(user_id);
+    res.send(`Success delete user with user id ${user_id}`);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
+userRouter.put("/", async (req, res) => {
+  const { user_id, password } = req.query;
+
+  try {
+    await userServices.updatePassword(user_id, password);
+    res.send(`Success update user with user id ${user_id}`);
   } catch (e) {
     res.status(400).send(e);
   }

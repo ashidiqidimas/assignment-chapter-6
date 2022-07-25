@@ -11,15 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      user_game_biodata.belongsTo(models.user_game);
     }
   }
   user_game_biodata.init({
+    user_id: DataTypes.INTEGER,
     age: DataTypes.INTEGER,
     gender: DataTypes.STRING,
     bio: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'user_game_biodata',
+    freezeTableName: true
   });
   return user_game_biodata;
 };

@@ -31,7 +31,7 @@ const repoUpdatePassword = async (user_id, password) => {
   });
 }
 
-const userRepo = {
+const user_historyRepo = {
   repoGetAllUsers,
   repoCreateNewUser,
   repoFindAUser,
@@ -39,4 +39,4 @@ const userRepo = {
   repoUpdatePassword
 };
 
-module.exports = userRepo;
+module.exports = user_historyRepo;

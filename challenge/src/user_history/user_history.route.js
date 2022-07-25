@@ -1,14 +1,14 @@
 const express = require("express");
-const userServices = require("./user.service");
-const userRouter = express.Router();
+const userServices = require("./user_history.service");
+const userHistoryRouter = express.Router();
 
-userRouter.get('/', (req, res) => {
+userHistoryRouter.get('/', (req, res) => {
   const users = userServices.getAllUsers();
 
   res.json(users);
 });
 
-userRouter.post("/", async (req, res) => {
+userHistoryRouter.post("/", async (req, res) => {
   const  {username, password} = req.body;
 
   try {
@@ -19,7 +19,7 @@ userRouter.post("/", async (req, res) => {
   }
 });
 
-userRouter.delete("/", async (req, res) => {
+userHistoryRouter.delete("/", async (req, res) => {
   const { user_id } = req.query;
 
   try {
@@ -30,7 +30,7 @@ userRouter.delete("/", async (req, res) => {
   }
 });
 
-userRouter.put("/", async (req, res) => {
+userHistoryRouter.put("/", async (req, res) => {
   const { user_id, password } = req.query;
 
   try {
@@ -41,4 +41,4 @@ userRouter.put("/", async (req, res) => {
   }
 });
 
-module.exports = { userRouter }
+module.exports = { userHistoryRouter }

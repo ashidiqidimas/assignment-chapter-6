@@ -1,14 +1,14 @@
 const express = require("express");
-const userServices = require("./user.service");
-const userRouter = express.Router();
+const userServices = require("./user_biodata.service");
+const userBiodataRouter = express.Router();
 
-userRouter.get('/', (req, res) => {
+userBiodataRouter.get('/', (req, res) => {
   const users = userServices.getAllUsers();
 
   res.json(users);
 });
 
-userRouter.post("/", async (req, res) => {
+userBiodataRouter.post("/", async (req, res) => {
   const  {username, password} = req.body;
 
   try {
@@ -19,7 +19,7 @@ userRouter.post("/", async (req, res) => {
   }
 });
 
-userRouter.delete("/", async (req, res) => {
+userBiodataRouter.delete("/", async (req, res) => {
   const { user_id } = req.query;
 
   try {
@@ -30,15 +30,15 @@ userRouter.delete("/", async (req, res) => {
   }
 });
 
-userRouter.put("/", async (req, res) => {
-  const { user_id, password } = req.query;
+userBiodataRouter.put("/", async (req, res) => {
+  const { user_id, score } = req.query;
 
   try {
-    await userServices.updatePassword(user_id, password);
+    await userServices.updateScore(user_id, score);
     res.send(`Success update user with user id ${user_id}`);
   } catch (e) {
     res.status(400).send(e);
   }
 });
 
-module.exports = { userRouter }
+module.exports = { userBiodataRouter }

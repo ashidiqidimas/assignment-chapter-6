@@ -1,5 +1,3 @@
-// Handle business logic
-
 const userRepo = require("./user.repo");
 
 const getAllUsers = async () => {
@@ -10,25 +8,25 @@ const createNewUser = async (username, password) => {
   const userExist = userRepo.repoFindAUser(username);
 
   if (userExist) {
-    // return 'User is already exist';
     throw "User already exist";
   } else {
     return await userRepo.repoCreateNewUser(username, password);
   }
 };
 
-const deleteUser = async (id) => {
-  // try {
-    return await userRepo.repoDeleteUser(id);
-  // } catch (e) {
-  //   throw e;
-  // }
+const deleteUser = async (user_id) => {
+    return await userRepo.repoDeleteUser(user_id);
+}
+
+const updatePassword = async (user_id, password) => {
+  return await userRepo.repoUpdatePassword(user_id, password);
 }
 
 const userServices = {
   getAllUsers,
   createNewUser,
-  deleteUser
+  deleteUser,
+  updatePassword
 }
 
 module.exports = userServices;
