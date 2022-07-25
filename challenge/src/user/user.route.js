@@ -9,10 +9,10 @@ userRouter.get('/', (req, res) => {
 });
 
 userRouter.post("/", async (req, res) => {
-  const  {username, password} = req.query;
+  const  {username, password, email} = req.query;
 
   try {
-    const newUser = await userServices.createNewUser(username, password);
+    const newUser = await userServices.createNewUser(username, password, email);
     res.json(newUser);
   } catch (e) {
     res.status(400).send("Username already exist");

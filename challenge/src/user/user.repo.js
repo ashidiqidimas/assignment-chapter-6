@@ -10,10 +10,13 @@ const repoFindAUser = async (username) => {
   });
 };
 
-const repoCreateNewUser = async (username, password) => {
+const repoCreateNewUser = async (username, password, email) => {
   await user_game.create({
     username: username,
     password: password,
+    email: email,
+    createdAt: new Date(),
+    updatedAt: new Date()
   });
 };
 

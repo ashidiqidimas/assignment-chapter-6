@@ -4,13 +4,13 @@ const getAllUsers = async () => {
   return await userRepo.repoGetAllUsers();
 }
 
-const createNewUser = async (username, password) => {
+const createNewUser = async (username, password, email) => {
   const userExist = userRepo.repoFindAUser(username);
 
   if (userExist) {
     throw "User already exist";
   } else {
-    return await userRepo.repoCreateNewUser(username, password);
+    return await userRepo.repoCreateNewUser(username, password, email);
   }
 };
 
